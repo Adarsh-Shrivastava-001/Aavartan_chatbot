@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
-import re
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -24,8 +24,15 @@ from sklearn.externals import joblib
 
 # Natural Language Processing
 
+def sub(a):
+	n=''
+	for i in a:
+		if i.isalpha() or i.isspace():
+			n=n+i
+	return n
+
 def filt(q):
-    que = re.sub('[^a-zA-Z]', ' ', q)
+    que = sub(q)
     que = que.lower()
     que = que.split()
     ps = PorterStemmer()
